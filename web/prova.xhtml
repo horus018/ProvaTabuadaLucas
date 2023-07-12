@@ -1,0 +1,28 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <h1>Prova de tabuada online</h1>
+
+        <h:panelGroup layout="block" rendered="#{not empty ProgressoProva.numeroMatricula}">
+            <h4>Questão #{ProgressoProva.questaoAtual} de 20</h4>
+            <h:form>
+                #{ProgressoProva.n1} x #{ProgressoProva.n2}: 
+                <h:inputText value="#{ProgressoProva.resposta}" converterMessage="Digite apenas número" required="true" requiredMessage="Informe o número da resposta" validatorMessage="O valor deve ser um número e deve estar entre 1 e 100" onkeypress="if (event.which &lt; 48 || event.which &gt; 57) return false;">
+                    <f:validateLongRange minimum="0" maximum="100"/>
+                </h:inputText>
+                <h:commandButton value="Responder" action="#{ProgressoProva.responder()}"/>
+            </h:form>
+        </h:panelGroup>
+        <h:panelGroup layout="block" rendered="#{empty ProgressoProva.numeroMatricula}">
+            <h3 style="color: red">Prova não iniciada</h3>
+            <a href="index.xhtml">Voltar pra página inicial</a>
+        </h:panelGroup>
+    </h:body>
+</html>
+
